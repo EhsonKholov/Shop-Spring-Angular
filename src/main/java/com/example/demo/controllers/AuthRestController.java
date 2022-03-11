@@ -95,8 +95,14 @@ public class AuthRestController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public ResponseEntity<Boolean> logout(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+        System.out.println(session.toString());
         session.invalidate();
 
         return new ResponseEntity(true, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/access-denied", method = RequestMethod.GET)
+    public ResponseEntity<String> accessDenied() {
+        return new ResponseEntity<>("access-denied", HttpStatus.FORBIDDEN);
     }
 }

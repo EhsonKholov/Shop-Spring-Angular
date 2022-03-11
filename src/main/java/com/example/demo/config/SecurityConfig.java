@@ -1,5 +1,9 @@
 package com.example.demo.config;
 
+import com.example.demo.security.jwt.JwtConfig;
+import com.example.demo.security.jwt.JwtFilter;
+import com.example.demo.security.jwt.JwtTokenProvider;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -26,11 +30,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //private final JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     //@Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
+
 
     /*@Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -78,13 +84,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    /*@Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }*/
+
+    /*@Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }*/
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                    //.exceptionHandling()
-
-                //.and()
-                    .cors()
+                .cors()
 
                 .and()
                     .authorizeRequests()
@@ -92,45 +113,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
 
                     // authenticate all remaining URLS
-                    //.anyRequest()
+                    .anyRequest()
                     //.fullyAuthenticated()
+                    .authenticated()
 
                 //.and()
                     //.anonymous()
                     //.authorizeRequests()
-                    .anyRequest()
-                    .authenticated()
+                    //.anyRequest()
+                    //.authenticated()
 
                     /*.antMatchers("/api/v1/admin/**").permitAll()          // увазываем какие url-ы будут доступны всем
                     .antMatchers("/api/v1/auth/**").hasRole("ADMIN")*/
 
-                //.and()
+                .and()
                     // adding JWT filter
-                    //.addFilterBefore(new JwtFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                    .addFilterBefore(new JwtFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
 
-                    // access denied page
-                    //.exceptionHandling().accessDeniedPage("/access-denied.html").and()
-                    //.apply(new JwtConfig(jwtTokenProvider))
-
-                .and()
-                    .sessionManagement()
-                    .maximumSessions(1)
-                .and()
-                    .sessionFixation()
-                    .migrateSession()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
-                .and()
-                    .httpBasic()
-                    .disable()
-                    .csrf()
-                    .disable()
-                    .headers()
-                    .defaultsDisabled()
-                    .frameOptions()
-                    .deny()
-                    .contentTypeOptions()
-                .and()
+                    .apply(new JwtConfig(jwtTokenProvider))
 
                 .and()
                     .formLogin()
@@ -144,6 +144,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //.logoutSuccessUrl("/api/v1/auth/login")
                     .invalidateHttpSession(true)
                     .deleteCookies("remove")
+
+                .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/access-denied")
+
+                .and()
+                    .sessionManagement()
+                    .maximumSessions(1)
+                .and()
+                    .sessionFixation()
+                    .migrateSession()
+                    //.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                .and()
+                    .httpBasic()
+                    .disable()
+                    .csrf()
+                    .disable()
+                    .headers()
+                    .defaultsDisabled()
+                    .frameOptions()
+                    .deny()
+                    .contentTypeOptions()
+
                 ;
     }
 
