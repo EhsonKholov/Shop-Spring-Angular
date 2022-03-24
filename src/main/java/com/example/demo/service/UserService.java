@@ -5,7 +5,6 @@ import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.security.jwt.JwtAuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,9 +57,6 @@ public class UserService {
 
         Set<Role> roles = new HashSet<>();
         Role role = roleRepository.findByName("USER");
-        if (role == null) {
-            throw new JwtAuthenticationException("Registration error");
-        }
         roles.add(role);
         user.setRoles(roles);
 
