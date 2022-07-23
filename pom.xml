@@ -175,21 +175,21 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.9.7</version>
         </dependency>-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
             <version>3.0.9.RELEASE</version>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>com.github.zhanhb</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>2.1.1</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--<dependency>
             <groupId>com.google.guava</groupId>
@@ -197,34 +197,34 @@
             <version>23.0</version>
         </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>2.6.0</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.template.velocity</artifactId>
             <version>2.0.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
             <version>1.4.2.RELEASE</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.converter.docx.xwpf</artifactId>
             <version>2.0.0</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>org.springframework.web.servlet.view.xdocreport</artifactId>
             <version>1.0.5</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-tools</artifactId>
@@ -235,22 +235,22 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.hyperledger.fabric-sdk-java</groupId>
             <artifactId>fabric-sdk-java</artifactId>
             <version>2.2.4</version>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>17.0.0</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.2</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Настроить swagger2 -->
         <!--<dependency>
