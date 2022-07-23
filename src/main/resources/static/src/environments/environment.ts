@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  srurl: 'http://127.0.0.1:8089'
+  production: true,
+  srurl: 'https://onlineshopspring.herokuapp.com:8089'
 };
 
 /*
