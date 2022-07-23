@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "users_")
 public class User implements Serializable {
     private static final long serialVersionUID =1L;
     @Id
@@ -25,7 +25,7 @@ public class User implements Serializable {
             }
     )
     private Long userId;
-    private String userName;
+    //private String userName;
     private String firstName;
     private String lastName;
     private String password;

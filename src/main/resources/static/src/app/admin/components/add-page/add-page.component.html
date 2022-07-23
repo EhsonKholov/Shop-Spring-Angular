@@ -1,0 +1,47 @@
+
+<form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submit()" class="col-sm-12 col-md-12 col-lg-10 col-xl-10 col-xxl-10 center-block2 p-5">
+  <h2 class="text-center mb-4">Add product</h2>
+
+  <div class="mb-3">
+    <label for="type" class="form-label">Type</label>
+    <select id="type" formControlName="type" class="form-select">
+      <option value="phone">Phone</option>
+      <option value="tablet">Tablet</option>
+      <option value="laptop">Laptop</option>
+    </select>
+    <div *ngIf="form?.get('type')?.touched && form?.get('type')?.invalid" class="form-text text-danger">
+      <small *ngIf="form?.get('type')?.errors?.['required']">Choose product type</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Name</label>
+    <input type="text" id="title" formControlName="title" class="form-control">
+    <div *ngIf="form?.get('title')?.touched && form?.get('title')?.invalid" class="form-text text-danger">
+      <small *ngIf="form?.get('title')?.errors?.['required']">Enter product name</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="photo" class="form-label">Photo</label>
+    <input type="file" id="photo" formControlName="photo" class="form-control" accept=".png, .jpg, .jpeg"
+           (change)="onFileSelected($event)">
+    <!--<quill-editor formControlName="photo" id="photo"></quill-editor>-->
+  </div>
+
+  <div class="mb-3">
+    <label for="info" class="form-label">Information</label>
+    <quill-editor formControlName="info" id="info"></quill-editor>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="text" id="price" formControlName="price" class="form-control">
+    <div *ngIf="form?.get('price')?.touched && form?.get('price')?.invalid" class="form-text text-danger">
+      <small *ngIf="form?.get('price')?.errors?.['required']">Enter product price</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="form?.invalid || submitted"> Add </button>
+
+</form>

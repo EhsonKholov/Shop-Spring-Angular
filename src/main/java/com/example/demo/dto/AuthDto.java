@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class AuthDto {
     @NotNull
     @Size(min = 3, max = 25)
-    private String username;
+    private String email;
     @NotNull
     @Size(min = 3, max = 25)
     private String password;

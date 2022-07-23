@@ -1,0 +1,28 @@
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="col-sm-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4 center-block bg-light p-5 shadow">
+  <h2 class="text-center mb-4">Login as administrator</h2>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    <div *ngIf="form?.get('email')?.touched && form?.get('email')?.invalid" class="form-text text-danger">
+      <small *ngIf="form?.get('email')?.errors?.['required']">Enter Email</small>
+      <small *ngIf="form?.get('email')?.errors?.['email']">Enter valid Email</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" id="password" formControlName="password" class="form-control">
+    <div *ngIf="form?.get('password')?.touched && form?.get('password')?.invalid" class="form-text text-danger">
+      <small *ngIf="form?.get('password')?.errors?.['required']">Enter password</small>
+      <small *ngIf="form?.get('password')?.errors?.['minlength']">
+        Password must be at least {{form?.get('password')?.errors?.['minlength'].requiredLength}} characters.
+          Now he {{form?.get('password')?.errors?.['minlength'].actualLength}}
+      </small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="form?.invalid || submitted"> Logon </button>
+
+</form>

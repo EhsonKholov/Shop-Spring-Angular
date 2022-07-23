@@ -1,0 +1,14 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.box {
+  margin-top: 2rem;
+  transition: all .3s ease-in-out;
+}
+
+.box:hover {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}

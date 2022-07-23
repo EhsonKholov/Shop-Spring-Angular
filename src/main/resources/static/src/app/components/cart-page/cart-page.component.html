@@ -1,0 +1,67 @@
+<div *ngIf="cartProducts.length > 0; else empty">
+  <h2 class="text-center">Your order:</h2>
+
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let cartProduct of cartProducts; let i = index">
+        <td>{{cartProduct.type}}</td>
+        <td>{{cartProduct.title}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteElement(cartProduct)">Delete</button>
+        </td>
+        <td>{{cartProduct.price}} c</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-right"><b>Total: {{totalPrice}}</b></div>
+
+  <div class="mt-4">
+    <h2 class="text-center">Delivery:</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8 center-block2 p-5">
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control">
+        <div *ngIf="form?.get('name')?.touched && form?.get('name')?.invalid" class="form-text text-danger">
+          <small *ngIf="form?.get('name')?.errors?.['required']">Enter your name</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" id="phone" formControlName="phone" class="form-control">
+        <div *ngIf="form?.get('phone')?.touched && form?.get('phone')?.invalid" class="form-text text-danger">
+          <small *ngIf="form?.get('phone')?.errors?.['required']">Enter your phone number</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" formControlName="address" class="form-control">
+        <div *ngIf="form?.get('address')?.touched && form?.get('address')?.invalid" class="form-text text-danger">
+          <small *ngIf="form?.get('address')?.errors?.['required']">Enter your address</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="payment" class="form-label">Payment method:</label>
+        <select id="payment" formControlName="payment" class="form-select">
+          <option value="Cache">Cache</option>
+          <option value="Card">Card</option>
+        </select>
+        <div *ngIf="form?.get('type')?.touched && form?.get('type')?.invalid" class="form-text text-danger">
+          <small *ngIf="form?.get('type')?.errors?.['required']">Choose product type</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="form?.invalid || submitted"> Add </button>
+
+    </form>
+  </div>
+
+</div>
+
+<ng-template #empty>
+  <h2 class="text-center">Cart is empty, select product</h2>
+</ng-template>

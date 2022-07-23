@@ -39,7 +39,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/api/v1/auth/")
+@RequestMapping("/auth/")
 public class AuthRestController {
 
     @Autowired
@@ -55,29 +55,28 @@ public class AuthRestController {
     @RequestMapping(value = "signin", method = RequestMethod.POST)
     public ResponseEntity<?> SignIn(@RequestBody @Valid AuthDto authDto) {
 
-        if (authDto.getUsername() == null || authDto.getPassword() == null) {
-            return new ResponseEntity<>("Invalid login or password", HttpStatus.BAD_REQUEST);
+        if (authDto.getEmail() == null || authDto.getPassword() == null) {
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.BAD_REQUEST);
         }
 
-        User user = userService.findByUserName(authDto.getUsername());
+        User user = userService.findByEmail(authDto.getEmail());
 
         if (user == null) {
-            return new ResponseEntity<>("Invalid login or password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.BAD_REQUEST);
         }
 
         if (!passwordEncoder.matches(authDto.getPassword(), user.getPassword())) {
-            return new ResponseEntity<>("Invalid login or password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.BAD_REQUEST);
         }
 
-        String token = jwtUtil.createToken(user.getUserName(), user.getRoles());
-        String refreshToken = jwtUtil.createRefreshToken(user.getUserName(), user.getRoles());
+        String token = jwtUtil.createToken(user.getEmail(), user.getRoles());
+        String refreshToken = jwtUtil.createRefreshToken(user.getEmail(), user.getRoles());
         List<String> roles = jwtUtil.getRoleNames(user.getRoles());
 
         Map<Object, Object> resp = new HashMap<>();
         resp.put("userId", user.getUserId());
         resp.put("firstname", user.getFirstName());
-        resp.put("userId", user.getLastName());
-        resp.put("username", user.getUserName());
+        resp.put("lastname", user.getLastName());
         resp.put("email", user.getEmail());
         resp.put("roles", roles);
         resp.put("access_token", token);
@@ -93,17 +92,17 @@ public class AuthRestController {
             return new ResponseEntity<>("JWT refresh token is expired or invalid", HttpStatus.UNAUTHORIZED);
         }
 
-        String username = jwtUtil.getUsernameFromRefreshToken(refresh_token);
+        String email = jwtUtil.getEmailFromRefreshToken(refresh_token);
 
-        if (username == null) {
+        if (email == null) {
             return new ResponseEntity<>("JWT refresh token is expired or invalid", HttpStatus.UNAUTHORIZED);
         }
 
-        User user = userService.findByUserName(username);
+        User user = userService.findByEmail(email);
 
-        UserDetails userDetails = userDetailService.loadUserByUsername(username);
+        UserDetails userDetails = userDetailService.loadUserByUsername(email);
 
-        if (!username.equals(userDetails.getUsername())) {
+        if (!email.equals(userDetails.getUsername())) {
             return new ResponseEntity<>("JWT refresh token is expired or invalid", HttpStatus.UNAUTHORIZED);
         }
 
@@ -113,7 +112,7 @@ public class AuthRestController {
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
 
-        String access_token = jwtUtil.createToken(user.getUserName(), user.getRoles());
+        String access_token = jwtUtil.createToken(user.getEmail(), user.getRoles());
 
         Map<Object, Object> resp = new HashMap<>();
         resp.put("access_token", access_token);

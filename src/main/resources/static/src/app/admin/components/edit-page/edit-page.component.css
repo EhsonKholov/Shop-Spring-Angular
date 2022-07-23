@@ -1,0 +1,11 @@
+.card-img {
+  position: relative;
+}
+
+.img {
+  height: 320px;
+  vertical-align: middle;
+  border-style: none;
+  max-width: 100%;
+  width: auto;
+}

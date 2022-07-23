@@ -78,7 +78,7 @@ public class JwtUtil {
         }
     }
 
-    public String getUsernameFromRefreshToken(String refreshToken) {
+    public String getEmailFromRefreshToken(String refreshToken) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(refreshToken);
             return claims.getBody().getSubject();

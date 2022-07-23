@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.snow.css';
+
+.bg-dark {
+  background-color: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.navbar-brand {
+  display: inline-block;
+  color: #fff;
+  cursor: pointer;
+  padding: .5rem 0;
+}
+
+.navbar-nav {
+  display: inline-block;
+  list-style-type: none;
+  list-style-position: outside;
+  list-style-image: none;
+  padding: .5rem 0;
+}
+
+.navbar-nav .nav-item {
+  display: inline-block;
+  padding: 8px 10px;
+}
+
+.navbar-nav .nav-item a {
+  color: #c7c7c7;
+  text-decoration: none;
+}
+
+.navbar-nav .nav-item a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.active a {
+  color: #fff !important;
+}
+
+.center-block {
+  margin: 10% auto;
+}
+
+.center-block2 {
+  margin: 0 auto;
+}

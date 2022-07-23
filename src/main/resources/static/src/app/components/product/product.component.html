@@ -1,0 +1,15 @@
+<div class="text-center card">
+  <div class="text-center">
+    <img [src]="productService.formatImage(product)" class="card-img-top pt-3 pb-3 card-img" alt="...">
+  </div>
+
+  <div class="card-body text-center">
+    <h5>{{product.title}}</h5>
+
+    <div class="row">
+      <button [routerLink]="['/product', product.productId]" class="btn-btn btn btn-dark">Open</button>
+
+      <button [routerLink]="['/cart']" (click)="addProduct(product)" class="btn-btn btn btn-dark">Add to cart</button>
+    </div>
+  </div>
+</div>

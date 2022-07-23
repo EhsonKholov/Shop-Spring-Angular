@@ -24,22 +24,21 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-
-    public User findByUserName(String username) {
-        return userRepository.findByUserName(username);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public boolean emailExists(String email) {
         return userRepository.findByEmail(email) != null;
     }
 
-    public boolean userNameExists(String username) {
-        return userRepository.findByUserName(username) != null;
+    public boolean userNameExists(String email) {
+        return userRepository.findByEmail(email) != null;
     }
 
     public static UserDto toUserDto(User user) {
         UserDto userDto = new UserDto();
-        userDto.setUserName(user.getUserName());
+        //userDto.setUserName(user.getUserName());
         userDto.setEmail(user.getEmail());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
@@ -49,7 +48,7 @@ public class UserService {
 
     public User createUser(UserDto userDto) {
         User user = new User();
-        user.setUserName(userDto.getUserName());
+        //user.setUserName(userDto.getUserName());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());

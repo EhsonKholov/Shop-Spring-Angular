@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  srurl: 'http://127.0.0.1:8089'
 };

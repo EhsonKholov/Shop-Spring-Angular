@@ -1,0 +1,22 @@
+.right {
+  text-align: right;
+}
+
+.product .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.product h2 {
+  margin-bottom: .5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.item {
+  width: 50%;
+}
+

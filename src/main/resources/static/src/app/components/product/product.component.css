@@ -1,0 +1,19 @@
+.btn-btn {
+  margin: 1rem auto;
+  display: block !important;
+  width: 60% !important;
+}
+
+.card-img {
+  height: 300px;
+}
+
+.card-title {
+  height: 90px;
+}
+
+.card-body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}

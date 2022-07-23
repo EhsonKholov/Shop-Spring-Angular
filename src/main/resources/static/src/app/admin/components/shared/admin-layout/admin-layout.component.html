@@ -1,0 +1,32 @@
+
+<nav class="navbar bg-dark">
+  <h2 class="navbar-brand" [routerLink]="['/']">Online shop</h2>
+
+  <ul class="navbar-nav" *ngIf="authService.isAuthenticated(); else login">
+    <li routerLinkActive="active" class="nav-item">
+      <a [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a [routerLink]="['/admin', 'add']">Add product</a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a [routerLink]="['/admin', 'orders']">Orders</a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a href="#" (click)="logout($event)">Logout</a>
+    </li>
+  </ul>
+
+  <ng-template #login>
+    <ul class="navbar-nav" >
+      <li routerLinkActive="active" class="nav-item">
+        <a [routerLink]="['/admin', 'login']">Login</a>
+      </li>
+    </ul>
+  </ng-template>
+
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
